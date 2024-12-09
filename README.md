@@ -1,0 +1,2 @@
+# ncscript
+Programming beginners
