@@ -1,0 +1,150 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --hot-wheels-red: #e4002b;
+  --hot-wheels-orange: #ff6b00;
+  --hot-wheels-yellow: #ffcc00;
+  --hot-wheels-blue: #0066b2;
+  --hot-wheels-dark: #121212;
+  --hot-wheels-darker: #0a0a0a;
+  --hot-wheels-card: #1e1e1e;
+  --hot-wheels-card-hover: #252525;
+  --hot-wheels-border: #333333;
+}
+
+@layer base {
+  body {
+    @apply bg-hw-dark;
+  }
+
+  /* Selection styles */
+  ::selection {
+    @apply bg-white text-black;
+  }
+
+  /* Input focus and selection styles */
+  input,
+  textarea,
+  select {
+    @apply focus:ring-hw-yellow focus:border-hw-yellow;
+  }
+
+  input::selection,
+  textarea::selection {
+    @apply bg-white text-black;
+  }
+}
+
+@layer components {
+  .flame-gradient {
+    background: linear-gradient(to bottom, var(--hot-wheels-yellow), var(--hot-wheels-orange), var(--hot-wheels-red));
+  }
+
+  .hot-wheels-button {
+    @apply relative overflow-hidden bg-gradient-to-r from-red-600 to-orange-500 text-white font-bold py-3 px-6 rounded-md shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl;
+  }
+
+  .hot-wheels-button::before {
+    content: "";
+    @apply absolute top-0 left-0 w-full h-full bg-gradient-to-r from-yellow-400 to-red-600 opacity-0 transition-opacity duration-300;
+  }
+
+  .hot-wheels-button:hover::before {
+    @apply opacity-30;
+  }
+
+  .product-card {
+    @apply bg-hw-card rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-hw-border hover:border-hw-red/50;
+  }
+
+  .category-badge {
+    @apply px-3 py-1 rounded-full text-xs font-semibold;
+  }
+
+  .category-badge.muscle {
+    @apply bg-red-600 text-white;
+  }
+
+  .category-badge.sports {
+    @apply bg-blue-600 text-white;
+  }
+
+  .category-badge.movie {
+    @apply bg-yellow-500 text-black;
+  }
+
+  .flame-border {
+    position: relative;
+  }
+
+  .flame-border::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--hot-wheels-red), var(--hot-wheels-yellow), var(--hot-wheels-red));
+  }
+
+  .input-dark {
+    @apply bg-black border-hw-border text-white placeholder:text-gray-500 focus:border-hw-yellow focus:ring-1 focus:ring-hw-yellow;
+  }
+
+  .card-dark {
+    @apply bg-hw-card border border-hw-border shadow-lg;
+  }
+
+  /* Add to cart animation */
+  @keyframes addToCart {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .add-to-cart-animation {
+    animation: addToCart 0.5s ease-in-out;
+  }
+
+  .button-dark {
+    @apply bg-black border-hw-border text-white hover:bg-hw-card-hover;
+  }
+
+  /* Dark mode form elements */
+  input,
+  textarea,
+  select,
+  button {
+    @apply bg-black border-hw-border text-white;
+  }
+
+  /* Gradient border for inputs */
+  .gradient-input {
+    @apply bg-black text-white border-0 relative;
+    background-clip: padding-box;
+  }
+
+  .gradient-input::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    bottom: -1px;
+    left: -1px;
+    z-index: -1;
+    border-radius: inherit;
+    background: linear-gradient(to right, var(--hot-wheels-red), var(--hot-wheels-yellow), var(--hot-wheels-red));
+  }
+
+  .gradient-input:focus-within::before {
+    background: linear-gradient(to right, var(--hot-wheels-yellow), var(--hot-wheels-red), var(--hot-wheels-yellow));
+  }
+}
